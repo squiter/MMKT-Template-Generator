@@ -7,6 +7,8 @@ function mtg_install(){
 	
 	$sql = "CREATE TABLE $table_name1 (
 				id int(5) UNSIGNED NOT NULL AUTO_INCREMENT,
+				edition_number int(5) UNSIGNED NOT NULL,
+				edition_date date DEFAULT '0000-00-00' NOT NULL,
 				template_folder varchar(50) NOT NULL,
 				created_by bigint(20) UNSIGNED NOT NULL,
 				created_at datetime DEFAULT '000-00-00 00:00:00' NOT NULL,

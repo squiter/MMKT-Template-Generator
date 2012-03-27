@@ -70,6 +70,9 @@ if (!defined('MTG_TABLE_POSTS')) {
 // Loading i18n files
 load_plugin_textdomain( MTG_TEXTDOMAIN, false, "/mmkt_template_generator/languages" );
 
+// Include getters functions
+include(MTG_PLUGIN_DIR . '/includes/mtg_getters.php');
+
 // Installing and Unistalling Functions
 include(MTG_PLUGIN_DIR . '/includes/mtg_install.php');
 

@@ -28,6 +28,9 @@ function mtg_render_config(){
 
 // Function to require templates page	
 function mtg_render_templates(){
+	
+	$templates = mtg_get_templates();
+	
 	require("mtg_page_templates.php");
 }
 ?>
