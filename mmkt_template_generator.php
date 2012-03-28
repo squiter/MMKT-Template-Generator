@@ -59,11 +59,17 @@ if (!defined('MTG_CONFIG_PAGE')) {
 if (!defined('MTG_TEMPLATE_PAGE')) {
   define('MTG_TEMPLATE_PAGE', "mtg-templates");
 }
+if (!defined('MTG_ADD_TEMPLATE_PAGE')) {
+  define('MTG_ADD_TEMPLATE_PAGE', "mtg-add-templates");
+}
 if (!defined('MTG_TABLE_TEMPLATES')) {
   define('MTG_TABLE_TEMPLATES', "mmkt_templates");
 }
 if (!defined('MTG_TABLE_POSTS')) {
   define('MTG_TABLE_POSTS', "mmkt_posts");
+}
+if (!defined('MTG_PERMISSION')) {
+  define('MTG_PERMISSION', "activate_plugins");
 }
 
 
@@ -72,6 +78,9 @@ load_plugin_textdomain( MTG_TEXTDOMAIN, false, "/mmkt_template_generator/languag
 
 // Include getters functions
 include(MTG_PLUGIN_DIR . '/includes/mtg_getters.php');
+
+// Include action functions
+include(MTG_PLUGIN_DIR . '/includes/mtg_actions.php');
 
 // Installing and Unistalling Functions
 include(MTG_PLUGIN_DIR . '/includes/mtg_install.php');
