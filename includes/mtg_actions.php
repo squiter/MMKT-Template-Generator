@@ -79,4 +79,14 @@ function mtg_add_template($data){
 	*/
 	return $wpdb->query($sql);
 }
+
+function mtg_delete_template($template_id){
+	if(!isset($template_id) || !is_int($template_id)) return FALSE;
+	
+	global $wpdb;
+	$tb = $tb = $wpdb->prefix . MTG_TABLE_TEMPLATES;
+	
+	$sql = "DELETE FROM $tb WHERE id = $template_id;";
+	return $wpdb->query($sql);
+}
 ?>

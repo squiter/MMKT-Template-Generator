@@ -1,9 +1,24 @@
+<?php
+if(isset($_GET["delete"])) :
+	$template_id = intval($_GET["delete"]);
+	if(mtg_delete_template($template_id)) :
+		$message = __("Template was deleted successfully.", MTG_TEXTDOMAIN);
+	else :
+		$message = __("Error: The template was not deleted.", MTG_TEXTDOMAIN);
+	endif;
+endif;
+
+$templates = mtg_get_templates();
+?>
 <div class="wrap">
 	<h2>
 		<?php _e("All Templates", MTG_TEXTDOMAIN);?>
 		<a href="<?php echo get_admin_url()?>admin.php?page=<?php echo MTG_ADD_TEMPLATE_PAGE?>" class="add-new-h2"><?php _e("Add New", MTG_TEXTDOMAIN);?></a>
 	</h2>
-	<?php if(isset($_GET["delete"])) : ?>
+	<?php if(isset($message)) : ?>
+		<div id="message" class="updated">
+			<p><strong><?php echo $message?></strong></p>
+		</div>
 	<?php endif; ?>
 	<table class="wp-list-table widefat fixed pages" cellspacing="0">
 		<thead>
