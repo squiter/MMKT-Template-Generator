@@ -80,6 +80,17 @@ function mtg_add_template($data){
 	return $wpdb->query($sql);
 }
 
+function mtg_template_exists($template_id){
+	if(!isset($template_id) || !is_int($template_id)) return FALSE;
+	
+	global $wpdb;
+	$tb = $tb = $wpdb->prefix . MTG_TABLE_TEMPLATES;
+	
+	$sql = "SELECT COUNT(id) as qnt FROM $tb WHERE id = $template_id;";
+	$content = $wpdb->get_results($sql);
+	return ($content[0]->qnt === "0") ? FALSE : TRUE;
+}
+
 function mtg_delete_template($template_id){
 	if(!isset($template_id) || !is_int($template_id)) return FALSE;
 	

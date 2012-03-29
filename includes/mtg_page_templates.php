@@ -1,10 +1,12 @@
 <?php
 if(isset($_GET["delete"])) :
 	$template_id = intval($_GET["delete"]);
-	if(mtg_delete_template($template_id)) :
-		$message = __("Template was deleted successfully.", MTG_TEXTDOMAIN);
-	else :
-		$message = __("Error: The template was not deleted.", MTG_TEXTDOMAIN);
+	if(mtg_template_exists($template_id)) : 
+		if(mtg_delete_template($template_id)) :
+			$message = __("Template was deleted successfully.", MTG_TEXTDOMAIN);
+		else :
+			$message = __("Error: The template was not deleted.", MTG_TEXTDOMAIN);
+		endif;
 	endif;
 endif;
 
