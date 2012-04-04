@@ -8,25 +8,24 @@ function mtg_config_menu(){
 									__("MMKT Settings", MTG_TEXTDOMAIN), 
 									MTG_PERMISSION, MTG_CONFIG_PAGE, 
 									"mtg_render_config");
-	$templates    = add_submenu_page(MTG_CONFIG_PAGE, 
-									__("All Templates", MTG_CONFIG_PAGE), 
-									__("All Templates", MTG_CONFIG_PAGE), 
+	$editions    = add_submenu_page(MTG_CONFIG_PAGE, 
+									__("All Editions", MTG_CONFIG_PAGE), 
+									__("All Editions", MTG_CONFIG_PAGE), 
 									MTG_PERMISSION, 
-									MTG_TEMPLATE_PAGE, 
-									"mtg_render_templates" );
-	$add_template = add_submenu_page(MTG_CONFIG_PAGE, 
-									__("Add Template", MTG_CONFIG_PAGE), 
-									__("Add New Template", MTG_CONFIG_PAGE), 
+									MTG_EDITIONS_PAGE, 
+									"mtg_render_editions" );
+	$add_edtion = add_submenu_page(MTG_CONFIG_PAGE, 
+									__("Add Edition", MTG_CONFIG_PAGE), 
+									__("Add New Edition", MTG_CONFIG_PAGE), 
 									MTG_PERMISSION, 
-									MTG_ADD_TEMPLATE_PAGE, 
-									"mtg_render_add_template" );
+									MTG_ADD_EDITION_PAGE, 
+									"mtg_render_add_edition" );
 	
-	add_action( "admin_print_styles-" . $add_template, 'mtg_add_js');
-	add_action( "admin_print_styles-" . $templates, 'mtg_add_js');
+	add_action( "admin_print_styles-" . $add_edtion, 'mtg_add_js');
+	add_action( "admin_print_styles-" . $editions, 'mtg_add_js');
 }
 
 function mtg_add_js(){
-	
 	$version = "1.7.1";
 	wp_deregister_script('jquery');
 	wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/'.$version.'/jquery.min.js', false, $version);
@@ -53,13 +52,13 @@ function mtg_render_config(){
 }
 
 // Function to require templates page	
-function mtg_render_templates(){	
-	require("mtg_page_templates.php");
+function mtg_render_editions(){	
+	require("mtg_page_editions.php");
 }
 
-function mtg_render_add_template(){
+function mtg_render_add_edition(){
 	global $current_user;
 	get_currentuserinfo();
-	require("mtg_page_add_template.php");
+	require("mtg_page_add_edition.php");
 }
 ?>

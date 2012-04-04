@@ -1,33 +1,33 @@
 <?php
 
-function mtg_validate_and_add_new_template($data){
-	$validation = mtg_validate_new_template($data);
+function mtg_validate_and_add_new_edition($data){
+	$validation = mtg_validate_new_edition($data);
 	if($validation["valid"]){
-		if(mtg_add_template($data)){
+		if(mtg_add_edition($data)){
 			return __("Your settings was saved successfully", MTG_TEXTDOMAIN);
 		}else{
-			return __("The template was not saved in database, please try again.", MTG_TEXTDOMAIN);
+			return __("The edition was not saved in database, please try again.", MTG_TEXTDOMAIN);
 		}
 	}else{
 		return $validation["message"];
 	}
 }
 
-function mtg_validate_and_edit_template($data){
-	$validation = mtg_validate_new_template($data);
+function mtg_validate_and_edit_edition($data){
+	$validation = mtg_validate_new_edition($data);
 	
 	if($validation["valid"]){
-		if(mtg_edit_template($data)){
-			return __("Your template was edited successfully", MTG_TEXTDOMAIN);
+		if(mtg_edit_edition($data)){
+			return __("Your edition was edited successfully", MTG_TEXTDOMAIN);
 		}else{
-			return __("The template was not edited, please try again.", MTG_TEXTDOMAIN);
+			return __("The edition was not edited, please try again.", MTG_TEXTDOMAIN);
 		}
 	}else{
 		return $validation["message"];
 	}
 }
 
-function mtg_validate_new_template($data){
+function mtg_validate_new_edition($data){
 	$r["valid"] = FALSE;
 	$r["message"] = "";
 	
@@ -56,34 +56,34 @@ function mtg_validate_new_template($data){
 		} 
 		
 	}else{
-		$r["message"] = __("The template was not created, please try again.", MTG_TEXTDOMAIN);
+		$r["message"] = __("The edition was not created, please try again.", MTG_TEXTDOMAIN);
 	}
 	return $r;
 }
 
-function mtg_add_template($data){
+function mtg_add_edition($data){
 	global $wpdb;
-	$default_template_folder = 'default';
+	$default_edition_folder = 'default';
 	foreach ($data as $key => $value) ${$key} = $value;
 	
 	// create mysql format to edition_date
 	$date_fragment = explode("/", $edition_date);
 	$edition_date = $date_fragment[2] . "-" . $date_fragment[1] . "-" . $date_fragment[0];
 	
-	$template_folder = (isset($template_folder) && !empty($template_folder)) ? $template_folder : $default_template_folder;
+	$edition_folder = (isset($edition_folder) && !empty($edition_folder)) ? $edition_folder : $default_edition_folder;
 
-	$tb = $wpdb->prefix . MTG_TABLE_TEMPLATES;
+	$tb = $wpdb->prefix . MTG_TABLE_EDITIONS;
 	
 	$sql = "INSERT INTO $tb (
 				edition_number,
 				edition_date,
-				template_folder,
+				edition_folder,
 				created_by,
 				created_at
 			) VALUES (
 				$edition_number,
 				'$edition_date',
-				'$template_folder',
+				'$edition_folder',
 				$created_by,
 				NOW()
 			);";
@@ -94,11 +94,11 @@ function mtg_add_template($data){
 	return $wpdb->query($sql);
 }
 
-function mtg_edit_template($data){
+function mtg_edit_edition($data){
 	if(!isset($data["id"]) && empty($data["id"])) return FALSE;
 	global $wpdb;
 	foreach ($data as $key => $value) ${$key} = $value;
-	$tb = $wpdb->prefix . MTG_TABLE_TEMPLATES;
+	$tb = $wpdb->prefix . MTG_TABLE_EDITIONS;
 
 	// create mysql format to edition_date
 	$date_fragment = explode("/", $edition_date);
@@ -115,24 +115,24 @@ function mtg_edit_template($data){
 	return $wpdb->query($sql);
 }
 
-function mtg_template_exists($template_id){
-	if(!isset($template_id) || !is_int($template_id)) return FALSE;
+function mtg_edition_exists($edition_id){
+	if(!isset($edition_id) || !is_int($edition_id)) return FALSE;
 	
 	global $wpdb;
-	$tb = $tb = $wpdb->prefix . MTG_TABLE_TEMPLATES;
+	$tb = $tb = $wpdb->prefix . MTG_TABLE_EDITIONS;
 	
-	$sql = "SELECT COUNT(id) as qnt FROM $tb WHERE id = $template_id;";
+	$sql = "SELECT COUNT(id) as qnt FROM $tb WHERE id = $edition_id;";
 	$content = $wpdb->get_results($sql);
 	return ($content[0]->qnt === "0") ? FALSE : TRUE;
 }
 
-function mtg_delete_template($template_id){
-	if(!isset($template_id) || !is_int($template_id)) return FALSE;
+function mtg_delete_edition($edition_id){
+	if(!isset($edition_id) || !is_int($edition_id)) return FALSE;
 	
 	global $wpdb;
-	$tb = $tb = $wpdb->prefix . MTG_TABLE_TEMPLATES;
+	$tb = $tb = $wpdb->prefix . MTG_TABLE_EDITIONS;
 	
-	$sql = "DELETE FROM $tb WHERE id = $template_id;";
+	$sql = "DELETE FROM $tb WHERE id = $edition_id;";
 	return $wpdb->query($sql);
 }
 ?>

@@ -2,7 +2,7 @@
 function mtg_install(){
 	global $wpdb;
 	
-	$table_name1 = $wpdb->prefix . MTG_TABLE_TEMPLATES;
+	$table_name1 = $wpdb->prefix . MTG_TABLE_EDITIONS;
 	$table_name2 = $wpdb->prefix . MTG_TABLE_POSTS;
 	
 	$sql = "CREATE TABLE $table_name1 (
