@@ -19,9 +19,16 @@ function mtg_config_menu(){
 									__("Add New Edition", MTG_CONFIG_PAGE), 
 									MTG_PERMISSION, 
 									MTG_ADD_EDITION_PAGE, 
-									"mtg_render_add_edition" );
+									"mtg_render_add_edition" );									
+	$edit_edtion = add_submenu_page(MTG_CONFIG_PAGE, 
+									__("Edit Edition", MTG_CONFIG_PAGE), 
+									__("Edit New Edition", MTG_CONFIG_PAGE), 
+									MTG_PERMISSION, 
+									MTG_EDIT_EDITION_PAGE, 
+									"mtg_render_edit_edition" );
 	
 	add_action( "admin_print_styles-" . $add_edtion, 'mtg_add_js');
+	add_action( "admin_print_styles-" . $edit_edtion, 'mtg_add_js');
 	add_action( "admin_print_styles-" . $editions, 'mtg_add_js');
 }
 
@@ -60,5 +67,11 @@ function mtg_render_add_edition(){
 	global $current_user;
 	get_currentuserinfo();
 	require("mtg_page_add_edition.php");
+}
+
+function mtg_render_edit_edition(){
+	global $current_user;
+	get_currentuserinfo();
+	require("mtg_page_edit_edition.php");
 }
 ?>

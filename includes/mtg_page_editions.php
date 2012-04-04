@@ -62,7 +62,7 @@ $editions = mtg_get_editions();
 				<?php foreach($editions as $i => $edition) : 
 					$user = get_userdata($edition->created_by);
 					$delete_link = get_admin_url() . "admin.php?page=" . MTG_EDITIONS_PAGE . "&delete=$edition->id";
-					$edit_link = get_admin_url() . "admin.php?page=" . MTG_ADD_EDITION_PAGE . "&edit=$edition->id";
+					$edit_link = get_admin_url() . "admin.php?page=" . MTG_EDIT_EDITION_PAGE . "&edition_id=$edition->id";
 					?>
 					<tr <?php echo ($i%2 == 0) ? "class='alternate'" : '';?>>
 						<td><?php echo $edition->edition_number; ?></td>

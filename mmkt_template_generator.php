@@ -57,10 +57,13 @@ if (!defined('MTG_CONFIG_PAGE')) {
   define('MTG_CONFIG_PAGE', "mtg-config");
 }
 if (!defined('MTG_EDITIONS_PAGE')) {
-  define('MTG_EDITIONS_PAGE', "mtg-templates");
+  define('MTG_EDITIONS_PAGE', "mtg-edition");
 }
 if (!defined('MTG_ADD_EDITION_PAGE')) {
-	define('MTG_ADD_EDITION_PAGE', "mtg-add-templates");
+	define('MTG_ADD_EDITION_PAGE', "mtg-add-edition");
+}
+if (!defined('MTG_EDIT_EDITION_PAGE')) {
+	define('MTG_EDIT_EDITION_PAGE', "mtg-edit-edition");
 }
 if (!defined('MTG_TABLE_EDITIONS')) {
 	define('MTG_TABLE_EDITIONS', "mmkt_editions");
