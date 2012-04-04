@@ -56,14 +56,14 @@ if (!defined('MTG_PLUGIN_ASSETS_URL')) {
 if (!defined('MTG_CONFIG_PAGE')) {
   define('MTG_CONFIG_PAGE', "mtg-config");
 }
-if (!defined('MTG_TEMPLATE_PAGE')) {
-  define('MTG_TEMPLATE_PAGE', "mtg-templates");
+if (!defined('MTG_EDITIONS_PAGE')) {
+  define('MTG_EDITIONS_PAGE', "mtg-templates");
 }
-if (!defined('MTG_ADD_TEMPLATE_PAGE')) {
-  define('MTG_ADD_TEMPLATE_PAGE', "mtg-add-templates");
+if (!defined('MTG_ADD_EDITION_PAGE')) {
+	define('MTG_ADD_EDITION_PAGE', "mtg-add-templates");
 }
-if (!defined('MTG_TABLE_TEMPLATES')) {
-  define('MTG_TABLE_TEMPLATES', "mmkt_templates");
+if (!defined('MTG_TABLE_EDITIONS')) {
+	define('MTG_TABLE_EDITIONS', "mmkt_editions");
 }
 if (!defined('MTG_TABLE_POSTS')) {
   define('MTG_TABLE_POSTS', "mmkt_posts");

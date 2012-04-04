@@ -1,7 +1,7 @@
 <?php
-function mtg_get_templates(){
+function mtg_get_editions(){
 	global $wpdb;
-	$table_name = $wpdb->prefix . MTG_TABLE_TEMPLATES;
+	$table_name = $wpdb->prefix . MTG_TABLE_EDITIONS;
 
 	$sql = "SELECT 
 				id,
@@ -16,9 +16,9 @@ function mtg_get_templates(){
 	return $wpdb->get_results($sql);
 }
 
-function mtg_get_template($template_id){
+function mtg_get_edition($edition_id){
 	global $wpdb;
-	$table_name = $wpdb->prefix . MTG_TABLE_TEMPLATES;
+	$table_name = $wpdb->prefix . MTG_TABLE_EDITIONS;
 
 	$sql = "SELECT 
 				id,
@@ -28,10 +28,10 @@ function mtg_get_template($template_id){
 				created_by,
 				created_at
 			FROM {$table_name}
-			WHERE id = $template_id
+			WHERE id = $edition_id
 			LIMIT 1";
 
-	$template =  $wpdb->get_results($sql);
-	return (isset($template[0])) ? $template[0] : NULL;
+	$edition =  $wpdb->get_results($sql);
+	return (isset($edition[0])) ? $edition[0] : NULL;
 }
 ?>
