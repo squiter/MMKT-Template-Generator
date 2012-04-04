@@ -62,7 +62,7 @@ $templates = mtg_get_templates();
 				<?php foreach($templates as $i => $template) : 
 					$user = get_userdata($template->created_by);
 					$delete_link = get_admin_url() . "admin.php?page=" . MTG_TEMPLATE_PAGE . "&delete=$template->id";
-					$edit_link = get_admin_url() . "admin.php?page=" . MTG_TEMPLATE_PAGE . "&edit=$template->id";
+					$edit_link = get_admin_url() . "admin.php?page=" . MTG_ADD_TEMPLATE_PAGE . "&edit=$template->id";
 					?>
 					<tr <?php echo ($i%2 == 0) ? "class='alternate'" : '';?>>
 						<td><?php echo $template->edition_number; ?></td>

@@ -13,6 +13,20 @@ function mtg_validate_and_add_new_template($data){
 	}
 }
 
+function mtg_validate_and_edit_template($data){
+	$validation = mtg_validate_new_template($data);
+	
+	if($validation["valid"]){
+		if(mtg_edit_template($data)){
+			return __("Your template was edited successfully", MTG_TEXTDOMAIN);
+		}else{
+			return __("The template was not edited, please try again.", MTG_TEXTDOMAIN);
+		}
+	}else{
+		return $validation["message"];
+	}
+}
+
 function mtg_validate_new_template($data){
 	$r["valid"] = FALSE;
 	$r["message"] = "";
@@ -73,6 +87,27 @@ function mtg_add_template($data){
 				$created_by,
 				NOW()
 			);";
+			
+	/*
+		TODO Validar esses campos com $wpdb->prepare o algo assim
+	*/
+	return $wpdb->query($sql);
+}
+
+function mtg_edit_template($data){
+	if(!isset($data["id"]) && empty($data["id"])) return FALSE;
+	global $wpdb;
+	foreach ($data as $key => $value) ${$key} = $value;
+	$tb = $wpdb->prefix . MTG_TABLE_TEMPLATES;
+
+	// create mysql format to edition_date
+	$date_fragment = explode("/", $edition_date);
+	$edition_date = $date_fragment[2] . "-" . $date_fragment[1] . "-" . $date_fragment[0];
+	
+	$sql = "UPDATE $tb SET 
+				edition_number = $edition_number,
+				edition_date = '$edition_date'
+			WHERE id = $id;";
 			
 	/*
 		TODO Validar esses campos com $wpdb->prepare o algo assim
