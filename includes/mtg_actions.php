@@ -63,27 +63,27 @@ function mtg_validate_new_edition($data){
 
 function mtg_add_edition($data){
 	global $wpdb;
-	$default_edition_folder = 'default';
+	$default_template_folder = 'default';
 	foreach ($data as $key => $value) ${$key} = $value;
 	
 	// create mysql format to edition_date
 	$date_fragment = explode("/", $edition_date);
 	$edition_date = $date_fragment[2] . "-" . $date_fragment[1] . "-" . $date_fragment[0];
 	
-	$edition_folder = (isset($edition_folder) && !empty($edition_folder)) ? $edition_folder : $default_edition_folder;
+	$template_folder = (isset($template_folder) && !empty($template_folder)) ? $template_folder : $default_template_folder;
 
 	$tb = $wpdb->prefix . MTG_TABLE_EDITIONS;
 	
 	$sql = "INSERT INTO $tb (
 				edition_number,
 				edition_date,
-				edition_folder,
+				template_folder,
 				created_by,
 				created_at
 			) VALUES (
 				$edition_number,
 				'$edition_date',
-				'$edition_folder',
+				'$template_folder',
 				$created_by,
 				NOW()
 			);";
